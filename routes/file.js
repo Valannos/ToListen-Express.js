@@ -9,7 +9,15 @@ var fileModel = require('../model/fileModel');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('files', {title: 'Files'});
+    res.render('files', {title: 'Files', added: false, deleted: false});
+});
+
+router.get('/fileDeleted', function (req, res, next) {
+    res.render('files', {title: 'Files', added: false, deleted: true});
+});
+
+router.get('/fileAdded', function (req, res, next) {
+    res.render('files', {title: 'Files', added: true, deleted: false});
 });
 
 router.post('/upload', function (req, res, next) {
@@ -63,36 +71,49 @@ router.post('/upload', function (req, res, next) {
 
     });
 
-}, fileModel.addOne);
+}, fileModel.addOne, function (req, res) {
+
+    console.log('************DB Insert successful************');
+    res.redirect('/files/fileAdded');
+
+});
 
 
 router.get('/download/:id', fileModel.getOne, function (req, res) {
 
-
+    console.log('Fichier localisé : ' + req.file);
     res.download(req.file);
 
 });
 
 
-router.get('/allFiles', fileModel.getAllFiles);
+router.get('/allFiles', fileModel.getAllFiles, function (req, res) {
+
+    console.log('JSON ready, sending response...');
+    res.type('json');
+    res.status(200).send(req.linkjson);
+
+});
 
 router.get('/delete/:id', fileModel.getOne, function (req, res, next) {
 
     fs.unlink(req.file, function (err) {
 
         if (err) {
-
             console.log(err);
 
         } else {
-             console.log('file has been deleted');
+            console.log('file has been deleted');
             next();
         }
-
     });
 
+}, fileModel.deleteOne, function (req, res) {
 
-}, fileModel.deleteOne);
+    console.log('************Entry successfully removed************');
+    res.redirect('/files/fileDeleted');
+
+});
 
 
 module.exports = router;

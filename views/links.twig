@@ -6,58 +6,74 @@
 
     </header>
     <div class="container">
+        <div class="row">
 
-
-        <div class="col-md-6">
-
-            <form action="/save/add" method="POST" class="well">
-                <fieldset>
-                    <legend><i class="fa fa-music" aria-hidden="true"></i> Add a link sent by a friend</legend>
-                    <div class="form-group">
-                        <label for="title">Title</label>  
-                        <input class="form-control" id="title" name="title">
+            {% if added == true  %}
+                <div class="col-md-12">
+                    <div class="alert alert-success text-center">
+                        <strong>Link has been successfully added !</strong> 
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="url">YouTube link</label>  
-                        <input class="form-control" id="url" name="url">
+            {% elseif deleted == true  %}
+                <div class="col-md-12">
+                    <div class="alert alert-warning text-center">
+                        <strong>Link has been successfully removed !</strong> 
                     </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class=" col-md-5  well">
 
-                    <div class="form-group">
-                        <label for="genre">Genre</label>  
-                        <input  class="form-control" id="genre" name="genre">
-                    </div>
-                    <div class="form-group">
-                        <label for="sender">Sent by</label>  
-                        <input  class="form-control" id="sender" name="sender">
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Author(s)</label>  
-                        <input  class="form-control" id="author" name="author">
-                    </div>
-                    <button class="btn btn-success" type="submit">Send it !</button>
-                    <button class="btn btn-danger" type="rest">Reset fields</button>
-                </fieldset>
-            </form>
+                <form action="/links/add" method="POST" >
+                    <fieldset>
+                        <legend><i class="fa fa-music" aria-hidden="true"></i> Add a link sent by a friend</legend>
+                        <div class="form-group">
+                            <label for="title">Title</label>  
+                            <input class="form-control" id="title" name="title">
+                        </div>
 
-        </div> 
-         <div class="col-md-6">
-        <ul class="list-group" id="listenlist">
+                        <div class="form-group">
+                            <label for="url">YouTube link</label>  
+                            <input class="form-control" id="url" name="url">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="genre">Genre</label>  
+                            <input  class="form-control" id="genre" name="genre">
+                        </div>
+                        <div class="form-group">
+                            <label for="sender">Sent by</label>  
+                            <input  class="form-control" id="sender" name="sender">
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author(s)</label>  
+                            <input  class="form-control" id="author" name="author">
+                        </div>
+                        <button class="btn btn-success" type="submit">Send it !</button>
+                        <button class="btn btn-danger" type="reset">Reset fields</button>
+                    </fieldset>
+                </form>
+
+            </div> 
+            <div class="col-md-6 col-md-offset-1 well">
+                <ul class="list-group" id="listenlist">
 
 
 
 
 
-        </ul>
+                </ul>
 
 
+            </div>
+
+
+        </div>
     </div>
 
 
-    </div>
 
-
-   
-
-    <script type="text/javascript" src="/javascripts/ajax.js" ></script> 
+    <script type="text/javascript" src="/javascripts/linkAjax.js" ></script> 
 {% endblock %}

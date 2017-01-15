@@ -25,7 +25,7 @@ window.onload = function () {
             for (var i = 0; i < res.length; i++) {
 
                 var del_btn = document.createElement('a');
-                del_btn.setAttribute('href', '/save/delete/' + res[i].id);
+                del_btn.setAttribute('href', '/links/delete/' + res[i].id);
                 del_btn.setAttribute('class', 'btn btn-danger');
                 del_btn.innerHTML = 'Delete link';
 
@@ -78,7 +78,7 @@ window.onload = function () {
 
     };
 
-    xhr.open("GET", "http://localhost:3000/save/mytolisten", true);
+    xhr.open("GET", "http://localhost:3000/links/mytolisten", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 

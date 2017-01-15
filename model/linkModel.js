@@ -19,33 +19,22 @@ module.exports = {
             else {
                 req.allLinks = rows;
                 next();
-
             }
         });
-
-
     },
 
-    addOne: function (req, res) {
+    addOne: function (req, res, next) {
 
-
-        connexion.query('INSERT INTO file SET ?', req.body, function (err, rows, fields) {
+        connexion.query('INSERT INTO link SET ?', req.body, function (err, rows, fields) {
 
             if (err) {
 
                 throw err;
+            } else {
+
+                next();
             }
-
-
-            console.log('Insert successful');
-            res.redirect('/save/savelinks');
-
-
-
         });
-
-
-
     },
 
     deleteOne: function (req, res, next) {
@@ -54,16 +43,11 @@ module.exports = {
             if (err) {
                 throw err;
             } else {
-                res.redirect('/save/savelinks');
+                console.log('Entry deleted');
+                next();
             }
-
-
-
-
         });
-
     }
-
 };
 
 
