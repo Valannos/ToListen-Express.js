@@ -19,8 +19,8 @@ router.get('/linksRemoved', function (req, res) {
 
 router.use(bodyParser.urlencoded({extended: true}));
 
-router.get('/mytolisten', linkModel.getAllLinks);
-router.get('/mytolisten', function (req, res) {
+router.get('/api/tolisten', linkModel.getAllLinks);
+router.get('/api/tolisten', function (req, res) {
 
     req.linkjson = JSON.stringify(req.allLinks);
     res.type('json');
@@ -32,7 +32,15 @@ router.get('/mytolisten', function (req, res) {
 
 router.get('/delete/:id', linkModel.deleteOne, function (req, res) {
 
-     res.redirect('/links/linksRemoved');
+    res.redirect('/links/linksRemoved');
+
+});
+
+router.get('/api/tolisten/delete/:id', linkModel.deleteOne, function (req, res) {
+
+
+    res.sendStatus(200);
+
 
 });
 
@@ -50,6 +58,15 @@ router.post('/add', function (req, res) {
 
     console.log('Insert successful');
     res.redirect('/links/linksAdded');
+
+});
+
+
+router.post('/api/tolisten/add', linkModel.addOne, function (req, res) {
+
+    console.log('insert successful');
+   
+    res.sendStatus(200);
 
 });
 

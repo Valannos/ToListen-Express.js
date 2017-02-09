@@ -25,11 +25,12 @@ module.exports = {
 
     addOne: function (req, res, next) {
 
+        console.log(req.body);
         connexion.query('INSERT INTO link SET ?', req.body, function (err, rows, fields) {
 
             if (err) {
 
-                throw err;
+                console.log(err);
             } else {
 
                 next();
