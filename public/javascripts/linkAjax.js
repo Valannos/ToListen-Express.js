@@ -78,7 +78,7 @@ window.onload = function () {
 
     };
 
-    xhr.open("GET", "http://localhost:3000/links/api/tolisten", true);
+    xhr.open("GET", "/links/api/tolisten", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 

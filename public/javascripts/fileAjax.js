@@ -69,8 +69,9 @@ window.onload = function () {
 
     };
 
-    xhr.open("GET", "http://localhost:3000/files/allFiles", true);
+    xhr.open("GET", "/files/allFiles", true);
     xhr.setRequestHeader("Content-Type", "application/json");
+    
     xhr.send();
 
 

@@ -23,11 +23,26 @@ router.get('/api/tolisten', linkModel.getAllLinks);
 router.get('/api/tolisten', function (req, res) {
 
     req.linkjson = JSON.stringify(req.allLinks);
+    console.log(req.linkjson);
     res.type('json');
     res.status(200).send(req.linkjson);
 
 });
 
+
+router.get('/api/tolisten/updateViewState/:id', linkModel.getById, linkModel.switchViewState, function (req, res) {
+
+    if (req.link[0].isViewed === 0) {
+        var response = 'View status changed on media ' + req.link[0].title.toString() + " to NOT viewed";
+    } else {
+         var response = 'View status changed on media ' + req.link[0].title.toString() + " to viewed";
+    }
+
+    console.log(response);
+    res.status(200).send(response);
+
+
+});
 
 
 router.get('/delete/:id', linkModel.deleteOne, function (req, res) {
@@ -65,7 +80,7 @@ router.post('/add', function (req, res) {
 router.post('/api/tolisten/add', linkModel.addOne, function (req, res) {
 
     console.log('insert successful');
-   
+
     res.sendStatus(200);
 
 });
