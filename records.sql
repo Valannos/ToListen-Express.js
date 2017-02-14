@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 14 Janvier 2017 à 22:59
+-- Généré le :  Mar 14 Février 2017 à 10:47
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -48,7 +48,8 @@ CREATE TABLE `link` (
   `sender` varchar(255) NOT NULL,
   `genre` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL
+  `title` varchar(255) NOT NULL,
+  `isViewed` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -80,7 +81,7 @@ ALTER TABLE `file`
 -- AUTO_INCREMENT pour la table `link`
 --
 ALTER TABLE `link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

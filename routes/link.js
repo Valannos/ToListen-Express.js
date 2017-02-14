@@ -23,14 +23,14 @@ router.get('/api/tolisten', linkModel.getAllLinks);
 router.get('/api/tolisten', function (req, res) {
 
     req.linkjson = JSON.stringify(req.allLinks);
-    console.log(req.linkjson);
+    console.log("JSON OK");
     res.type('json');
     res.status(200).send(req.linkjson);
 
 });
 
 
-router.get('/api/tolisten/updateViewState/:id', linkModel.getById, linkModel.switchViewState, function (req, res) {
+router.put('/api/tolisten/updateViewState/', linkModel.getById, linkModel.switchViewState, function (req, res) {
 
     if (req.link[0].isViewed === 0) {
         var response = 'View status changed on media ' + req.link[0].title.toString() + " to NOT viewed";
@@ -51,7 +51,8 @@ router.get('/delete/:id', linkModel.deleteOne, function (req, res) {
 
 });
 
-router.get('/api/tolisten/delete/:id', linkModel.deleteOne, function (req, res) {
+router.delete('/api/tolisten/delete/', linkModel.deleteOne, function (req, res) {
+
 
 
     res.sendStatus(200);

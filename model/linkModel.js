@@ -51,7 +51,10 @@ module.exports = {
     },
     getById: function (req, res, next) {
 
-        connexion.query('SELECT * FROM link WHERE id = ?', [req.params.id], function (err, rows, fields) {
+
+
+
+        connexion.query('SELECT * FROM link WHERE id = ?', [req.body.mediaId], function (err, rows, fields) {
 
             if (err)
                 throw err;
@@ -73,25 +76,25 @@ module.exports = {
                 if (err)
                     throw err;
                 else {
-                 req.link[0].isViewed = 1;
+                    req.link[0].isViewed = 1;
                     next();
                 }
             });
 
         } else {
-            
-             connexion.query('UPDATE link SET isViewed = 0 WHERE id = ?', req.link[0].id, function (err, rows, fields) {
+
+            connexion.query('UPDATE link SET isViewed = 0 WHERE id = ?', req.link[0].id, function (err, rows, fields) {
 
                 if (err)
                     throw err;
                 else {
-                          req.link[0].isViewed = 0;
+                    req.link[0].isViewed = 0;
                     next();
                 }
             });
-            
-            
-            
+
+
+
         }
 
 
