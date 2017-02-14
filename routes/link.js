@@ -19,48 +19,11 @@ router.get('/linksRemoved', function (req, res) {
 
 router.use(bodyParser.urlencoded({extended: true}));
 
-router.get('/api/tolisten', linkModel.getAllLinks);
-router.get('/api/tolisten', function (req, res) {
-
-    req.linkjson = JSON.stringify(req.allLinks);
-    console.log("JSON OK");
-    res.type('json');
-    res.status(200).send(req.linkjson);
-
-});
-
-
-router.put('/api/tolisten/updateViewState/', linkModel.getById, linkModel.switchViewState, function (req, res) {
-
-    if (req.link[0].isViewed === 0) {
-        var response = 'View status changed on media ' + req.link[0].title.toString() + " to NOT viewed";
-    } else {
-         var response = 'View status changed on media ' + req.link[0].title.toString() + " to viewed";
-    }
-
-    console.log(response);
-    res.status(200).send(response);
-
-
-});
-
-
 router.get('/delete/:id', linkModel.deleteOne, function (req, res) {
 
     res.redirect('/links/linksRemoved');
 
 });
-
-router.delete('/api/tolisten/delete/', linkModel.deleteOne, function (req, res) {
-
-
-
-    res.sendStatus(200);
-
-
-});
-
-
 
 router.post('/add', function (req, res, next) {
 
@@ -78,11 +41,53 @@ router.post('/add', function (req, res) {
 });
 
 
-router.post('/api/tolisten/add', linkModel.addOne, function (req, res) {
+router.post('/api/tolisten/add', linkModel.addOne, linkModel.getById, function (req, res) {
 
-    console.log('insert successful');
+    req.json = JSON.stringify(req.link[0]);
+  //  console.log('insert successful : ' + req.json);
+    res.type('json');
+    res.status(200).send(req.json);
 
-    res.sendStatus(200);
+});
+
+router.delete('/api/tolisten/delete/:id', function (req, res, next) {
+
+
+    req.body.mediaId = req.params.id;
+    next();
+
+
+}, linkModel.getById, linkModel.deleteOne, function (req, res) {
+
+
+    req.json = JSON.stringify(req.link[0]);
+  //  console.log(req.json);
+    res.type('json');
+    res.status(200).send(req.json);
+
+
+});
+router.put('/api/tolisten/updateViewState/', linkModel.getById, linkModel.switchViewState, function (req, res) {
+
+    if (req.link[0].isViewed === 0) {
+        var response = 'View status changed on media ' + req.link[0].title.toString() + " to NOT viewed";
+    } else {
+        var response = 'View status changed on media ' + req.link[0].title.toString() + " to viewed";
+    }
+
+    console.log(response);
+    res.status(200).send(response);
+
+
+});
+
+router.get('/api/tolisten', linkModel.getAllLinks);
+router.get('/api/tolisten', function (req, res) {
+
+    req.linkjson = JSON.stringify(req.allLinks);
+    console.log("JSON OK");
+    res.type('json');
+    res.status(200).send(req.linkjson);
 
 });
 

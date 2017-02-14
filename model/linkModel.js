@@ -15,7 +15,7 @@ module.exports = {
         connexion.query('SELECT * FROM link', function (err, rows, fields) {
 
             if (err)
-                throw err;
+                console.log(err);
             else {
                 req.allLinks = rows;
                 next();
@@ -26,13 +26,15 @@ module.exports = {
     addOne: function (req, res, next) {
 
         console.log(req.body);
-        connexion.query('INSERT INTO link SET ?', req.body, function (err, rows, fields) {
+        connexion.query('INSERT INTO link SET ?', [req.body], function (err, rows, fields) {
 
             if (err) {
 
                 console.log(err);
             } else {
 
+                req.body.mediaId = rows.insertId;
+            //    console.log("Id insert : " + req.body.mediaId);
                 next();
             }
         });
@@ -40,19 +42,20 @@ module.exports = {
 
     deleteOne: function (req, res, next) {
 
+
+
         connexion.query('DELETE FROM link WHERE id = ?', [req.params.id], function (err, rows, fields) {
             if (err) {
-                throw err;
+                console.log(err);
             } else {
-                console.log('Entry deleted');
+
+               
+              //  console.log(req.body.mediaId);
                 next();
             }
         });
     },
     getById: function (req, res, next) {
-
-
-
 
         connexion.query('SELECT * FROM link WHERE id = ?', [req.body.mediaId], function (err, rows, fields) {
 
@@ -63,10 +66,9 @@ module.exports = {
                 next();
             }
         });
-
-
-
     },
+   
+
     switchViewState: function (req, res, next) {
 
         if (req.link[0].isViewed === 0) {
