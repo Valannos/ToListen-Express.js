@@ -44,7 +44,7 @@ router.post('/add', function (req, res) {
 router.post('/api/tolisten/add', linkModel.addOne, linkModel.getById, function (req, res) {
 
     req.json = JSON.stringify(req.link[0]);
-  //  console.log('insert successful : ' + req.json);
+    //  console.log('insert successful : ' + req.json);
     res.type('json');
     res.status(200).send(req.json);
 
@@ -61,7 +61,7 @@ router.delete('/api/tolisten/delete/:id', function (req, res, next) {
 
 
     req.json = JSON.stringify(req.link[0]);
-  //  console.log(req.json);
+    //  console.log(req.json);
     res.type('json');
     res.status(200).send(req.json);
 
@@ -78,7 +78,6 @@ router.put('/api/tolisten/updateViewState/', linkModel.getById, linkModel.switch
     console.log(response);
     res.status(200).send(response);
 
-
 });
 
 router.get('/api/tolisten', linkModel.getAllLinks);
@@ -91,7 +90,13 @@ router.get('/api/tolisten', function (req, res) {
 
 });
 
+router.put('/api/tolisten/edit', linkModel.updateOne, linkModel.getById, function (req, res) {
 
+    req.json = JSON.stringify(req.link[0]);
+    //  console.log(req.json);
+    res.type('json');
+    res.status(200).send(req.json);
 
+});
 
 module.exports = router;

@@ -34,7 +34,7 @@ module.exports = {
             } else {
 
                 req.body.mediaId = rows.insertId;
-            //    console.log("Id insert : " + req.body.mediaId);
+                //    console.log("Id insert : " + req.body.mediaId);
                 next();
             }
         });
@@ -49,8 +49,8 @@ module.exports = {
                 console.log(err);
             } else {
 
-               
-              //  console.log(req.body.mediaId);
+
+                //  console.log(req.body.mediaId);
                 next();
             }
         });
@@ -67,7 +67,6 @@ module.exports = {
             }
         });
     },
-   
 
     switchViewState: function (req, res, next) {
 
@@ -98,6 +97,32 @@ module.exports = {
 
 
         }
+
+
+
+
+    },
+
+    updateOne: function (req, res, next) {
+
+        connexion.query('UPDATE link SET url = ?, sender = ?, genre = ?, author = ?, `title` = ? WHERE id = ?',
+                [req.body.url, req.body.sender, req.body.genre, req.body.author, req.body.title, req.body.id], function (err, row, field) {
+
+            if (err) {
+
+                console.log(err);
+
+            } else {
+
+
+                req.body.mediaId = req.body.id;
+                next();
+            }
+
+
+        });
+
+
 
 
 
