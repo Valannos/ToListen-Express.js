@@ -93,7 +93,7 @@ router.get('/api/tolisten', function (req, res) {
 router.put('/api/tolisten/edit', linkModel.updateOne, linkModel.getById, function (req, res) {
 
     req.json = JSON.stringify(req.link[0]);
-    //  console.log(req.json);
+      console.log(req.json);
     res.type('json');
     res.status(200).send(req.json);
 
