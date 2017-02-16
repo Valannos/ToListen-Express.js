@@ -44,7 +44,9 @@ router.post('/add', function (req, res) {
 router.post('/api/tolisten/add', linkModel.addOne, linkModel.getById, function (req, res) {
 
     req.json = JSON.stringify(req.link[0]);
-    //  console.log('insert successful : ' + req.json);
+    console.log('---------------------------');
+    console.log('POSTED : \n' + req.json);
+    console.log('---------------------------');
     res.type('json');
     res.status(200).send(req.json);
 
@@ -61,7 +63,9 @@ router.delete('/api/tolisten/delete/:id', function (req, res, next) {
 
 
     req.json = JSON.stringify(req.link[0]);
-    //  console.log(req.json);
+    console.log('---------------------------');
+    console.log('DELETED : \n' + req.json);
+    console.log('---------------------------');
     res.type('json');
     res.status(200).send(req.json);
 
@@ -84,7 +88,9 @@ router.get('/api/tolisten', linkModel.getAllLinks);
 router.get('/api/tolisten', function (req, res) {
 
     req.linkjson = JSON.stringify(req.allLinks);
-    console.log("JSON OK");
+    console.log('---------------------------');
+    console.log('GET : \n' + req.linkjson);
+    console.log('---------------------------');
     res.type('json');
     res.status(200).send(req.linkjson);
 
@@ -93,7 +99,9 @@ router.get('/api/tolisten', function (req, res) {
 router.put('/api/tolisten/edit', linkModel.updateOne, linkModel.getById, function (req, res) {
 
     req.json = JSON.stringify(req.link[0]);
-      console.log(req.json);
+    console.log('---------------------------');
+    console.log('UPDATED : \n' + req.json);
+    console.log('---------------------------');
     res.type('json');
     res.status(200).send(req.json);
 
