@@ -44,9 +44,10 @@ router.post('/add', function (req, res) {
 router.post('/api/tolisten/add', linkModel.addOne, linkModel.getById, function (req, res) {
 
     req.json = JSON.stringify(req.link[0]);
-    console.log('---------------------------');
-    console.log('POSTED : \n' + req.json);
-    console.log('---------------------------');
+    console.log();
+    console.log('POSTED : '.green);
+    console.log('---------------------------\n'.bold.red + req.json.bold.cyan);
+    console.log('---------------------------'.bold.red);
     res.type('json');
     res.status(200).send(req.json);
 
@@ -63,9 +64,10 @@ router.delete('/api/tolisten/delete/:id', function (req, res, next) {
 
 
     req.json = JSON.stringify(req.link[0]);
-    console.log('---------------------------');
-    console.log('DELETED : \n' + req.json);
-    console.log('---------------------------');
+    console.log();
+    console.log('DELETED : '.green);
+    console.log('---------------------------\n'.bold.red + req.json.bold.cyan);
+    console.log('---------------------------'.bold.red);
     res.type('json');
     res.status(200).send(req.json);
 
@@ -74,9 +76,13 @@ router.delete('/api/tolisten/delete/:id', function (req, res, next) {
 router.put('/api/tolisten/updateViewState/', linkModel.getById, linkModel.switchViewState, function (req, res) {
 
     if (req.link[0].isViewed === 0) {
-        var response = 'View status changed on media ' + req.link[0].title.toString() + " to NOT viewed";
+        console.log();
+        var response = 'View status changed on media ' + req.link[0].title.toString() + " to NOT viewed".red;
+        console.log();
     } else {
-        var response = 'View status changed on media ' + req.link[0].title.toString() + " to viewed";
+        console.log();
+        var response = 'View status changed on media ' + req.link[0].title.toString() + " to viewed".green;
+        console.log();
     }
 
     console.log(response);
@@ -88,9 +94,10 @@ router.get('/api/tolisten', linkModel.getAllLinks);
 router.get('/api/tolisten', function (req, res) {
 
     req.linkjson = JSON.stringify(req.allLinks);
-    console.log('---------------------------');
-    console.log('GET : \n' + req.linkjson);
-    console.log('---------------------------');
+    console.log();
+    console.log('GET :'.green);
+    console.log('---------------------------\n'.bold.red + req.linkjson.bold.cyan);
+    console.log('---------------------------'.bold.red);
     res.type('json');
     res.status(200).send(req.linkjson);
 
@@ -99,9 +106,10 @@ router.get('/api/tolisten', function (req, res) {
 router.put('/api/tolisten/edit', linkModel.updateOne, linkModel.getById, function (req, res) {
 
     req.json = JSON.stringify(req.link[0]);
-    console.log('---------------------------');
-    console.log('UPDATED : \n' + req.json);
-    console.log('---------------------------');
+    console.log();
+    console.log('UPDATED :'.green);
+    console.log('---------------------------\n'.bold.red + req.json.bold.cyan);
+    console.log('---------------------------'.bold.red);
     res.type('json');
     res.status(200).send(req.json);
 

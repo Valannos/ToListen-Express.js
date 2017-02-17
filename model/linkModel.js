@@ -25,9 +25,9 @@ module.exports = {
 
     addOne: function (req, res, next) {
 
-        console.log('---------------------------');
+      /*  console.log('---------------------------');
         console.log('TO POST : \n' + req.body);
-        console.log('---------------------------');
+        console.log('---------------------------');*/
         connexion.query('INSERT INTO link (url, sender, genre, author, title, isViewed) VALUES (?,?,?,?,?,0)', [req.body.url, req.body.sender, req.body.genre, req.body.author, req.body.title], function (err, rows, fields) {
 
             if (err) {
@@ -107,7 +107,7 @@ module.exports = {
 
     updateOne: function (req, res, next) {
 
-        console.log('to update : ' + req.body.id);
+        //console.log('to update : ' + req.body.id);
         connexion.query('UPDATE link SET url = ?, sender = ?, genre = ?, author = ?, title = ? WHERE id = ?',
                 [req.body.url, req.body.sender, req.body.genre, req.body.author, req.body.title, req.body.id], function (err, row, field) {
 
