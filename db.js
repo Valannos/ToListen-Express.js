@@ -1,26 +1,6 @@
-
-
-
-
-var mysql = require('mysql');
-
-
-
-var connection = mysql.createConnection({
-
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'records'
-
-
-});
-
-
-
-
-module.exports = connection;
-
-
-
-
+var sequilize = require('sequelize');
+module.exports = new sequilize.Sequelize('tolisten_express_js', 'postgres', 'postgres', {
+    host : 'localhost',
+    dialect : 'postgres'
+    });
+    

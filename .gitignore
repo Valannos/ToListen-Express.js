@@ -35,4 +35,5 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-/public/images/portal_cake.jpg
+package-lock.json
+public/
